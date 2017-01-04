@@ -15,3 +15,17 @@ A search engine. Parameterize breadth, depth, and initial search nodes.
 
 version-0.1 (in active development)
 Keywords: Python, Pyramid, Postgresql, Jinja2, JavaScript
+
+**USER STORIES:**
+
+As a USER I want to SEARCH so that I can FIND
+
+As a USER I want to POINT THE SEARCH so I can FIND BETTER
+
+As a USER I want to SEE HOW SEARCH WORKS so that I can POINT THE SEARCH BETTER
+
+As a USER I want to CONTROL LEXICON AND INITIAL SEARCH NODE so that I can POINT THE SEARCH BETTER
+
+As a DEVELOPER I want to INTEGRATE LEXICON CONSTRUCTION, QUERY PARSING, AND KEYWORD DATA STRUCTURE so that DEVELOPMENT IS ORDERLY
+
+As a DEVELOPER I want to use EXCELLENT NAMING CONVENTIONS so that DIRECTORY, FILE, DATABASE, AND FUNCTION PURPOSE ARE CLEAR
