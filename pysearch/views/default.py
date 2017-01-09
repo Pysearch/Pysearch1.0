@@ -4,16 +4,16 @@ from pyramid.view import view_config
 from sqlalchemy.exc import DBAPIError
 
 from ..models import Keyword
+from pyramid.httpexceptions import HTTPFound
 
 
 @view_config(route_name='home', renderer='../templates/home.jinja2')
 def my_view(request):
-    try:
-        query = request.dbsession.query(Keyword)
-        one = query.filter(Keyword.keyword == 'one').first()
-    except DBAPIError:
-        return Response(db_err_msg, content_type='text/plain', status=500)
-    return {'one': one, 'project': 'pysearch'}
+    if request.method == "POST":
+        url = request.POST["url"]
+        print(url)
+        return HTTPFound(request.route_url("results"))
+    return {}
 
 
 @view_config(route_name='results', renerer='../templates/results.jinja2')
