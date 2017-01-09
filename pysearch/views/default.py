@@ -44,11 +44,11 @@ def populating_db_view(request):
 def results_view(request):
     query = request.dbsession.query(Keyword)
     try:
-        entries = query.filter(Keyword.keyword == 'baseball')
+        results = query.filter(Keyword.keyword == 'baseball')
         # entries = query.all()
     except DBAPIError:
         return Response(db_err_msg, content_type='text/plain', status=500)
-    return {"ENTRIES": entries}
+    return {"RESULTS": results}
 
 db_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem
