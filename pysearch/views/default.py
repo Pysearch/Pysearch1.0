@@ -4,6 +4,9 @@ from pyramid.view import view_config
 from sqlalchemy.exc import DBAPIError
 
 from ..models import Keyword
+from ..search_engine.analyze_url import analyze_url
+from ..search_engine.add_to_db import add_to_db
+from ..search_engine.compute_results import compute_results
 from pyramid.httpexceptions import HTTPFound
 
 
@@ -12,13 +15,28 @@ def home_view(request):
     if request.method == "POST":
         url = request.POST["url"]
         print(url)
+        compute_results(url)
         return HTTPFound(request.route_url("populating_db"))
     return {}
+
+
+### This commented out code is a version of home_view that reroutes to
+### /populating_db on POST of url.
+
+
+# @view_config(route_name='home', renderer='../templates/home.jinja2')
+# def home_view(request):
+#     if request.method == "POST":
+#         url = request.POST["url"]
+#         print(url)
+#         return HTTPFound(request.route_url("populating_db"))
+#     return {}
 
 
 @view_config(route_name='populating_db')
 def populating_db_view(request):
     """Remove authentication from the user."""
+    add_to_db()
     return HTTPFound(request.route_url("results"))
 
 
