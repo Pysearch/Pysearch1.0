@@ -56,6 +56,6 @@ setup(name='pysearch',
       [paste.app_factory]
       main = pysearch:main
       [console_scripts]
-      initialize_pysearch_db = pysearch.scripts.initializedb:main
+      initialize_db = pysearch.scripts.initializedb:main
       """,
       )
