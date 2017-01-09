@@ -6,7 +6,7 @@ from sqlalchemy.exc import DBAPIError
 from ..models import Keyword
 
 
-@view_config(route_name='home', renderer='../templates/mytemplate.jinja2')
+@view_config(route_name='home', renderer='../templates/home.jinja2')
 def my_view(request):
     try:
         query = request.dbsession.query(Keyword)
@@ -15,6 +15,16 @@ def my_view(request):
         return Response(db_err_msg, content_type='text/plain', status=500)
     return {'one': one, 'project': 'pysearch'}
 
+
+@view_config(route_name='results', renerer='../templates/results.jinja2')
+def results_view(request):
+    query = request.dbsession.query(Keyword)
+    try:
+        entries = query.filter(Keyword.keyword == 'baseball')
+        # entries = query.all()
+    except DBAPIError:
+        return Response(db_err_msg, content_type='text/plain', status=500)
+    return {"ENTRIES": entries}
 
 db_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem
