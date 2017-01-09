@@ -8,7 +8,7 @@ from pyramid.httpexceptions import HTTPFound
 
 
 @view_config(route_name='home', renderer='../templates/home.jinja2')
-def my_view(request):
+def home_view(request):
     if request.method == "POST":
         url = request.POST["url"]
         print(url)
