@@ -12,8 +12,14 @@ def home_view(request):
     if request.method == "POST":
         url = request.POST["url"]
         print(url)
-        return HTTPFound(request.route_url("results"))
+        return HTTPFound(request.route_url("populating_db"))
     return {}
+
+
+@view_config(route_name='populating_db')
+def populating_db_view(request):
+    """Remove authentication from the user."""
+    return HTTPFound(request.route_url("results"))
 
 
 @view_config(route_name='results', renerer='../templates/results.jinja2')
